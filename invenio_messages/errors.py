@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2014, 2015 CERN.
+# Copyright (C) 2013 CERN.
 #
 # Invenio is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,24 +17,18 @@
 # along with Invenio; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
-"""Messages bundles."""
+"""
+    Exceptions for Invenio Messages module
+"""
 
-from __future__ import unicode_literals
 
-from invenio.base.bundles import invenio as _i, jquery as _j, styles as _styles
-from invenio.ext.assets import Bundle, RequireJSFilter
+class InvenioWebMessageError(Exception):
+    """A generic error for WebMessage."""
 
-_styles.contents.append(
-    "vendors/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.css"
-)
+    def __init__(self, message):
+        """Initialisation."""
+        self.message = message
 
-js = Bundle(
-    'js/messages/init.js',
-    output='messages.js',
-    weight=70,
-    filters=RequireJSFilter(exclude=[_j, _i]),
-    bower={
-        "jquery-ui": "~1.11",
-        "jqueryui-timepicker-addon": "1.5.2"
-    }
-)
+    def __str__(self):
+        """String representation."""
+        return repr(self.message)

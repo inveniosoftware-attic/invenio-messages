@@ -21,20 +21,19 @@
 
 from string import strip
 
-from invenio.base.globals import cfg
-from invenio.base.i18n import _
-from invenio.ext.sqlalchemy import db
 from invenio_accounts.models import User
-from invenio.modules.messages.config import CFG_WEBMESSAGE_MAX_SIZE_OF_MESSAGE
-from invenio.utils.forms import DateTimePickerWidget, FilterForm, \
-    FilterStringField, InvenioBaseForm
-
+from invenio_groups.models import Group
 from six import iteritems
-
 from wtforms import DateTimeField, RadioField, StringField, TextAreaField, \
     validators
 
-from invenio_groups.models import Group
+from invenio.base.globals import cfg
+from invenio.base.i18n import _
+from invenio.ext.sqlalchemy import db
+from invenio.utils.forms import DateTimePickerWidget, FilterForm, \
+    FilterStringField, InvenioBaseForm
+
+from .config import CFG_WEBMESSAGE_MAX_SIZE_OF_MESSAGE
 
 
 def msg_split_addr(value):

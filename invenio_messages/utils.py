@@ -21,8 +21,7 @@
 
 from invenio.base.globals import cfg
 from invenio.ext.login import UserInfo
-from invenio.modules.access.control import acc_get_role_id, \
-    acc_is_user_in_role
+from invenio.modules.access.control import acc_get_role_id, acc_is_user_in_role
 
 
 def is_no_quota_user(uid):

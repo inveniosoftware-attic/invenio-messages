@@ -19,7 +19,7 @@
 
 """WebMessage User Settings"""
 
-from flask import url_for, current_app
+from flask import current_app, url_for
 from flask_login import current_user
 
 from invenio.base.i18n import _
@@ -27,8 +27,8 @@ from invenio.ext.sqlalchemy import db
 from invenio.ext.template import render_template_to_string
 from invenio.modules.dashboard.settings import Settings, UserSettingsStorage
 
-from .models import UserMsgMESSAGE
 from .forms import WebMessageUserSettingsForm
+from .models import UserMsgMESSAGE
 
 
 class WebMessageSettings(Settings):
@@ -59,21 +59,21 @@ class WebMessageSettings(Settings):
         total = db.session.query(db.func.count(UserMsgMESSAGE.id_msgMESSAGE)).\
             filter(
                 UserMsgMESSAGE.id_user_to == uid
-            ).scalar()
+        ).scalar()
 
         template = """
 {{  _("You have %(x_num_new)d new messages out of %(x_num_total)d messages.",
       x_num_new=unread, x_num_total=total) }}
 """
         return render_template_to_string(template, _from_string=True,
-                    unread=unread, total=total)
+                                         unread=unread, total=total)
 
     widget.size = 4
 
     @property
     def is_authorized(self):
         return current_user.is_authenticated() and \
-               current_user.is_authorized('usemessages')
+            current_user.is_authorized('usemessages')
 
 # Compulsory plugin interface
 settings = WebMessageSettings

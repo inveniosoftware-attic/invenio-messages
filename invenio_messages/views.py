@@ -43,15 +43,18 @@ from .utils import is_no_quota_user
 
 
 class MessagesMenu(object):
+
     def __str__(self):
         uid = current_user.get_id()
         dbquery.update_user_inbox_for_reminders(uid)
         unread = db.session.query(db.func.count(UserMsgMESSAGE.id_msgMESSAGE)).\
             filter(db.and_(
                 UserMsgMESSAGE.id_user_to == uid,
-                UserMsgMESSAGE.status == cfg['CFG_WEBMESSAGE_STATUS_CODE']['NEW']
+                UserMsgMESSAGE.status == cfg[
+                    'CFG_WEBMESSAGE_STATUS_CODE']['NEW']
             )).scalar()
-        return render_template_to_string("messages/menu_item.html", unread=unread)
+        return render_template_to_string(
+            "messages/menu_item.html", unread=unread)
 
 not_guest = lambda: not current_user.is_guest
 
@@ -62,7 +65,7 @@ default_breadcrumb_root(blueprint, '.webaccount.messages')
 
 
 @blueprint.route('/menu', methods=['GET'])
-#FIXME if request is_xhr then do not return 401
+# FIXME if request is_xhr then do not return 401
 #@login_required
 #@permission_required('usemessages')
 #@templated('messages/menu.html')
@@ -78,7 +81,7 @@ def menu():
         filter(db.and_(dbquery.filter_all_messages_from_user(uid))).\
         order_by(db.desc(MsgMESSAGE.received_date)).limit(5)
 
-    #return dict(messages=messages.all())
+    # return dict(messages=messages.all())
     return render_template('messages/menu.html', messages=messages.all())
 
 
@@ -152,15 +155,16 @@ def add(msg_reply_id):
         form.populate_obj(m)
         m.id_user_from = uid
         m.sent_date = datetime.now()
-        quotas = dblayer.check_quota(cfg['CFG_WEBMESSAGE_MAX_NB_OF_MESSAGES'] - 1)
+        quotas = dblayer.check_quota(
+            cfg['CFG_WEBMESSAGE_MAX_NB_OF_MESSAGES'] - 1)
         users = filter(lambda x: x.id in quotas, m.recipients)
-        #m.recipients = m.recipients.difference(users))
+        # m.recipients = m.recipients.difference(users))
         for u in users:
             m.recipients.remove(u)
         if len(users) > 0:
             flash(_('Following users reached their quota %(quota)d messages: %(users)s',
-                  quota=cfg['CFG_WEBMESSAGE_MAX_NB_OF_MESSAGES'],
-                  users=', '.join([u.nickname for u in users])), "error")
+                    quota=cfg['CFG_WEBMESSAGE_MAX_NB_OF_MESSAGES'],
+                    users=', '.join([u.nickname for u in users])), "error")
         flash(_('Message has %(recipients)d valid recipients.',
                 recipients=len(m.recipients)), "info")
         if len(m.recipients) == 0:
@@ -198,10 +202,10 @@ def view(msgid):
         try:
             m = dbquery.get_message(uid, msgid)
             m.status = cfg['CFG_WEBMESSAGE_STATUS_CODE']['READ']
-            ## It's not necessary since "m" is SQLAlchemy object bind with same
-            ## session.
-            ##db.session.add(m)
-            ## I wonder if the autocommit works ...
+            # It's not necessary since "m" is SQLAlchemy object bind with same
+            # session.
+            # db.session.add(m)
+            # I wonder if the autocommit works ...
             # Commit changes before rendering for correct menu update.
             db.session.commit()
             return dict(m=m)
@@ -225,7 +229,8 @@ def delete():
     if len(msgids) <= 0:
         flash(_('Sorry, no valid message specified.'), "error")
     elif dbquery.check_user_owns_message(uid, msgids) < len(msgids):
-        flash(_('Sorry, this message (#%(x_msg)s) is not in your mailbox.', x_msg=(str(msgids), )), "error")
+        flash(_('Sorry, this message (#%(x_msg)s) is not in your mailbox.',
+                x_msg=(str(msgids), )), "error")
     else:
         if dbquery.delete_message_from_user_inbox(uid, msgids) == 0:
             flash(_("The message could not be deleted."), "error")
