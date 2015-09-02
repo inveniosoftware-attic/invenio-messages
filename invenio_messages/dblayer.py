@@ -496,7 +496,7 @@ def check_quota(nb_messages):
     @return: a dictionary of users over-quota
     """
     from invenio.legacy.webuser import collect_user_info
-    from invenio.modules.access.control import acc_is_user_in_role, acc_get_role_id
+    from invenio_access.control import acc_is_user_in_role, acc_get_role_id
     no_quota_role_ids = [acc_get_role_id(
         role) for role in CFG_WEBMESSAGE_ROLES_WITHOUT_QUOTA]
     res = {}

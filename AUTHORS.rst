@@ -45,6 +45,7 @@ Invenio module that adds support for sending messages.
 - Marko Niinimaki <manzikki@gmail.com>
 - Nicholas Robinson <nicholas.robinson@cern.ch>
 - Raquel Jimenez Encinar <raquel.jimenez.encinar@cern.ch>
+- Sami Hiltunen <sami.mikael.hiltunen@cern.ch>
 - Samuele Kaplun <samuele.kaplun@cern.ch>
 - Tibor Simko <tibor.simko@cern.ch>
 - Yoan Blanc <yoan.blanc@cern.ch>
