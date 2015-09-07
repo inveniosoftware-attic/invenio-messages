@@ -17,21 +17,21 @@
 # along with Invenio; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
-"""Every db-related function of module webmessage"""
+"""Every db-related function of module webmessage."""
 
-__revision__ = "$Id$"
+from functools import reduce
+
+from invenio.ext.login.legacy_user import UserInfo
+from invenio.legacy.dbquery import datetime_format, rlike, run_sql
+from invenio.utils.date import convert_datestruct_to_datetext, datetext_default
 
 from time import localtime, mktime
 
 from sqlalchemy.exc import OperationalError
 
-from invenio.legacy.dbquery import datetime_format, rlike, run_sql
-from invenio.utils.date import convert_datestruct_to_datetext, datetext_default
-
 from .config import CFG_WEBMESSAGE_DAYS_BEFORE_DELETE_ORPHANS, \
     CFG_WEBMESSAGE_MAX_NB_OF_MESSAGES, CFG_WEBMESSAGE_ROLES_WITHOUT_QUOTA, \
     CFG_WEBMESSAGE_STATUS_CODE
-from functools import reduce
 
 
 def check_user_owns_message(uid, msgid):
@@ -495,14 +495,13 @@ def check_quota(nb_messages):
     @param nb_messages: max number of messages a user can have
     @return: a dictionary of users over-quota
     """
-    from invenio.legacy.webuser import collect_user_info
     from invenio_access.control import acc_is_user_in_role, acc_get_role_id
     no_quota_role_ids = [acc_get_role_id(
         role) for role in CFG_WEBMESSAGE_ROLES_WITHOUT_QUOTA]
     res = {}
     for uid, n in run_sql(
             "SELECT id_user_to, COUNT(id_user_to) FROM user_msgMESSAGE GROUP BY id_user_to HAVING COUNT(id_user_to) > %s", (nb_messages, )):
-        user_info = collect_user_info(uid)
+        user_info = UserInfo(uid)
         for role_id in no_quota_role_ids:
             if acc_is_user_in_role(user_info, role_id):
                 break
