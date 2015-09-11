@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2011, 2012 CERN.
+# Copyright (C) 2011, 2012, 2015 CERN.
 #
 # Invenio is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -30,7 +30,7 @@ from invenio_accounts.models import User
 from invenio_groups.models import Group
 from sqlalchemy.ext.associationproxy import association_proxy
 
-from invenio.base.globals import cfg
+from invenio_base.globals import cfg
 from invenio.config import CFG_WEBCOMMENT_ALERT_ENGINE_EMAIL
 from invenio.ext.sqlalchemy import db
 from invenio.utils.date import datetext_format

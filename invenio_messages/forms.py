@@ -27,8 +27,8 @@ from six import iteritems
 from wtforms import DateTimeField, RadioField, StringField, TextAreaField, \
     validators
 
-from invenio.base.globals import cfg
-from invenio.base.i18n import _
+from invenio_base.globals import cfg
+from invenio_base.i18n import _
 from invenio.ext.sqlalchemy import db
 from invenio.utils.forms import DateTimePickerWidget, FilterForm, \
     FilterStringField, InvenioBaseForm

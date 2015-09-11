@@ -27,10 +27,10 @@ from flask_login import current_user, login_required
 from flask_menu import register_menu
 from sqlalchemy.sql import operators
 
-from invenio.base.decorators import filtered_by, sorted_by, templated, \
+from invenio_base.decorators import filtered_by, sorted_by, templated, \
     wash_arguments
-from invenio.base.globals import cfg
-from invenio.base.i18n import _
+from invenio_base.globals import cfg
+from invenio_base.i18n import _
 from invenio.ext.principal import permission_required
 from invenio.ext.sqlalchemy import db
 from invenio.ext.template import render_template_to_string

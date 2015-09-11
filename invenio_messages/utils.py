@@ -19,7 +19,7 @@
 
 """Utility functions for message module."""
 
-from invenio.base.globals import cfg
+from invenio_base.globals import cfg
 from invenio.ext.login import UserInfo
 from invenio_access.control import acc_get_role_id, acc_is_user_in_role
 

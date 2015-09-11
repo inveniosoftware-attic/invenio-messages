@@ -38,6 +38,7 @@ requirements = [
     'six>=1.7.2',
     'invenio-access>=0.1.0',
     'invenio-accounts>=0.1.0',
+    'invenio-base>=0.2.1',
     'invenio-groups>=0.1.0',
 ]
 
