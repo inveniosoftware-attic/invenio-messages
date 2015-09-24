@@ -23,8 +23,8 @@ from flask import current_app, url_for
 from flask_login import current_user
 
 from invenio_base.i18n import _
-from invenio.ext.sqlalchemy import db
-from invenio.ext.template import render_template_to_string
+from invenio_ext.sqlalchemy import db
+from invenio_ext.template import render_template_to_string
 from invenio.modules.dashboard.settings import Settings, UserSettingsStorage
 
 from .forms import WebMessageUserSettingsForm

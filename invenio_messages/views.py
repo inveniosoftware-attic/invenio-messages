@@ -31,9 +31,9 @@ from invenio_base.decorators import filtered_by, sorted_by, templated, \
     wash_arguments
 from invenio_base.globals import cfg
 from invenio_base.i18n import _
-from invenio.ext.principal import permission_required
-from invenio.ext.sqlalchemy import db
-from invenio.ext.template import render_template_to_string
+from invenio_ext.principal import permission_required
+from invenio_ext.sqlalchemy import db
+from invenio_ext.template import render_template_to_string
 
 from . import query as dbquery
 from . import dblayer

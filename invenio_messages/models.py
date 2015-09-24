@@ -32,7 +32,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 
 from invenio_base.globals import cfg
 from invenio.config import CFG_WEBCOMMENT_ALERT_ENGINE_EMAIL
-from invenio.ext.sqlalchemy import db
+from invenio_ext.sqlalchemy import db
 from invenio_utils.date import datetext_format
 
 from .config import CFG_WEBMESSAGE_EMAIL_ALERT
@@ -175,8 +175,8 @@ class MsgMESSAGE(db.Model):
 
 def email_alert(mapper, connection, target):
     """ Sends email alerts to message recipients. """
-    from invenio.ext.template import render_template_to_string
-    from invenio.ext.email import send_email, scheduled_send_email
+    from invenio_ext.template import render_template_to_string
+    from invenio_ext.email import send_email, scheduled_send_email
     m = target
     is_reminder =  m.received_date is not None \
         and m.received_date > datetime.now()

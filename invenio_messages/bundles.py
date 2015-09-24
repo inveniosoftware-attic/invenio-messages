@@ -24,7 +24,7 @@ from __future__ import unicode_literals
 from invenio_base.bundles import invenio as _i
 from invenio_base.bundles import jquery as _j
 from invenio_base.bundles import styles as _styles
-from invenio.ext.assets import Bundle, RequireJSFilter
+from invenio_ext.assets import Bundle, RequireJSFilter
 
 _styles.contents.append(
     "vendors/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.css"

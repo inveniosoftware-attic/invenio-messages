@@ -21,7 +21,7 @@
 
 from functools import reduce
 
-from invenio.ext.login.legacy_user import UserInfo
+from invenio_ext.login.legacy_user import UserInfo
 from invenio.legacy.dbquery import datetime_format, rlike, run_sql
 from invenio_utils.date import convert_datestruct_to_datetext, datetext_default
 

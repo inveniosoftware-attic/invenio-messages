@@ -24,8 +24,8 @@ from time import localtime, mktime
 
 from sqlalchemy.exc import OperationalError
 
-from invenio.ext.login.legacy_user import UserInfo
-from invenio.ext.sqlalchemy import db
+from invenio_ext.login.legacy_user import UserInfo
+from invenio_ext.sqlalchemy import db
 from invenio.legacy.dbquery import rlike, run_sql
 from invenio_utils.date import convert_datestruct_to_datetext, datetext_default
 
