@@ -27,7 +27,7 @@ from sqlalchemy.exc import OperationalError
 from invenio.ext.login.legacy_user import UserInfo
 from invenio.ext.sqlalchemy import db
 from invenio.legacy.dbquery import rlike, run_sql
-from invenio.utils.date import convert_datestruct_to_datetext, datetext_default
+from invenio_utils.date import convert_datestruct_to_datetext, datetext_default
 
 from .config import CFG_WEBMESSAGE_DAYS_BEFORE_DELETE_ORPHANS, \
     CFG_WEBMESSAGE_MAX_NB_OF_MESSAGES, CFG_WEBMESSAGE_ROLES_WITHOUT_QUOTA, \

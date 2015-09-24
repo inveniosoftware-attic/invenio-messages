@@ -33,7 +33,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from invenio_base.globals import cfg
 from invenio.config import CFG_WEBCOMMENT_ALERT_ENGINE_EMAIL
 from invenio.ext.sqlalchemy import db
-from invenio.utils.date import datetext_format
+from invenio_utils.date import datetext_format
 
 from .config import CFG_WEBMESSAGE_EMAIL_ALERT
 

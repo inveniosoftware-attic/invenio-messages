@@ -124,7 +124,7 @@ def index(sort=False, filter=None):
 @permission_required('usemessages')
 @wash_arguments({'msg_reply_id': (int, 0)})
 def add(msg_reply_id):
-    from invenio.utils.mail import email_quote_txt
+    from invenio_utils.mail import email_quote_txt
     uid = current_user.get_id()
     if msg_reply_id:
         if (dblayer.check_user_owns_message(uid, msg_reply_id) == 0):

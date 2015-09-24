@@ -30,7 +30,7 @@ from wtforms import DateTimeField, RadioField, StringField, TextAreaField, \
 from invenio_base.globals import cfg
 from invenio_base.i18n import _
 from invenio.ext.sqlalchemy import db
-from invenio.utils.forms import DateTimePickerWidget, FilterForm, \
+from invenio_utils.forms import DateTimePickerWidget, FilterForm, \
     FilterStringField, InvenioBaseForm
 
 from .config import CFG_WEBMESSAGE_MAX_SIZE_OF_MESSAGE
