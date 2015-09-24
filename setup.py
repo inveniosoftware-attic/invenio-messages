@@ -41,6 +41,7 @@ requirements = [
     'invenio-base>=0.2.1',
     'invenio-ext>=0.2.1',
     'invenio-groups>=0.1.0',
+    'invenio-records>=0.3.3',
     'invenio-utils>=0.1.1',
 ]
 
