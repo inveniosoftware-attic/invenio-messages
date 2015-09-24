@@ -19,16 +19,15 @@
 
 """Unit tests for WebMessage."""
 
-__revision__ = \
-    "$Id$"
-
-
 from invenio_base.wrappers import lazy_import
-from invenio.testsuite import make_test_suite, run_test_suite, InvenioTestCase
+
+from invenio_testing import InvenioTestCase
+
 webmessage_mailutils = lazy_import('invenio.utils.mail')
 
 
 class TestQuotingMessage(InvenioTestCase):
+
     """Test for quoting messages."""
 
     def test_simple_quoting_per_block(self):
@@ -54,12 +53,13 @@ Of course!<br/>
 Reply to my question please.<br/>
     see you...<br/>
 """
-        res =  webmessage_mailutils.email_quoted_txt2html(text,
-                                                          tabs_before=0,
-                                                          indent_txt='>>',
-                                                          linebreak_txt="\n",
-                                                          indent_html=('<div class="commentbox">', "</div>"),
-                                                          linebreak_html='<br/>')
+        res = webmessage_mailutils.email_quoted_txt2html(text,
+                                                         tabs_before=0,
+                                                         indent_txt='>>',
+                                                         linebreak_txt="\n",
+                                                         indent_html=(
+                                                             '<div class="commentbox">', "</div>"),
+                                                         linebreak_html='<br/>')
         self.assertEqual(res, expected_text)
 
     def test_simple_quoting_per_line(self):
@@ -81,15 +81,15 @@ Of course!&nbsp;<br/>
 Reply to my question please.&nbsp;<br/>
     see you...&nbsp;<br/>
 """
-        res =  webmessage_mailutils.email_quoted_txt2html(text,
-                                                          tabs_before=0,
-                                                          indent_txt='>>',
-                                                          linebreak_txt="\n",
-                                                          indent_html=('<blockquote><div>', '&nbsp;</div></blockquote>'),
-                                                          linebreak_html="&nbsp;<br/>",
-                                                          indent_block=False)
+        res = webmessage_mailutils.email_quoted_txt2html(text,
+                                                         tabs_before=0,
+                                                         indent_txt='>>',
+                                                         linebreak_txt="\n",
+                                                         indent_html=(
+                                                             '<blockquote><div>', '&nbsp;</div></blockquote>'),
+                                                         linebreak_html="&nbsp;<br/>",
+                                                         indent_block=False)
         self.assertEqual(res, expected_text)
-
 
     def test_quoting_message(self):
         """webmessage - test quoting message (text)"""
@@ -135,9 +135,3 @@ I didn't!*&lt;script&gt;malicious code&lt;/script&gt;
                                                             indent_txt='>>',
                                                             linebreak_txt='\n')
         self.assertEqual(res, expected_text)
-
-
-TEST_SUITE = make_test_suite(TestQuotingMessage)
-
-if __name__ == "__main__":
-    run_test_suite(TEST_SUITE)
